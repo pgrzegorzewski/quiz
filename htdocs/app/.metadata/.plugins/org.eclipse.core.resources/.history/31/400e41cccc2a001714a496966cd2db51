@@ -55,9 +55,7 @@
 				<div class="col-sm-6">
 					<h4>Question of the day.</h4>
 					<?php
-					
 					session_start();
-					$_SESSION["used_question_ids"][] =  0;
 					function checkAnswear($button, $id)
 					{
 						$check = $button.attr("id");
@@ -96,11 +94,8 @@
 						if($conn -> connect_error){
 							die("Connection failed".$conn -> connect_error);	
 						}
-					
-					function drawRandomQuestion($conn)
-					{
+	
 						$sqlQuestion = "SELECT 
-					
   											q.question_id,
   											q.question_text, 
 											qa.is_true,
@@ -162,8 +157,8 @@
 						}
 						
 						$conn -> close();
-					};	
-					drawRandomQuestion($conn);	
+						
+						
 					?>
 				</div>
 				<div class="col-sm-6">
