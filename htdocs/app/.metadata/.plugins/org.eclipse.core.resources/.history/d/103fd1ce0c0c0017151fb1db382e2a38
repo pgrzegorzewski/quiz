@@ -1,0 +1,10 @@
+.question
+{
+	text-align: center;
+	
+}
+
+.question td{
+	min-width; 90px;
+	
+}

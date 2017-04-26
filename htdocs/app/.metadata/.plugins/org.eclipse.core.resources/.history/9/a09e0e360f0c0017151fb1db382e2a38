@@ -1,0 +1,15 @@
+.question
+{
+	
+	
+}
+
+.question button{
+	min-width: 50px;
+	
+}
+
+.question td, th{
+	min-width: 90px;
+	text-align: center;
+}

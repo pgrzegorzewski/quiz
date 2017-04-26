@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" href="../css/index.css" />
+<script type="text/javascript" src="../js/questionnaire.js"></script>
+</head>
+
+<body>
+
+<div class="page">
+	<header class="header">
+		<h1>Quizzy</h1>
+	</header>
+
+	<div class="row">
+		<div class = "col-m-12">	
+			<nav class= "menu_header">
+				Menu
+				<table>
+					<tr>
+						<td>
+							One
+						</td>
+						<td>
+							Two
+						</td>
+					</tr>
+				</table>
+			</nav>
+		</div>
+
+		<div class="col-m-12">
+			<section class = "section">
+				<span>Question of the day.</span>
+				<?php
+					$servername = "localhost";
+					$username = "pawelg";
+					$password = "aaa";
+					$dbname = "questions";
+					
+					$conn = mysqli_connect($servername, $username, $password, $dbname);
+					if($conn -> connect_error){
+						die("Connection failed".$conn -> connect_error);	
+					}
+
+					$sqlQuestion = 'SELECT q.question_text, qa.answear_text FROM questions.tbl_question q
+									INNER JOIN (
+									    			SELECT question_id FROM questions.tbl_question
+									    			ORDER BY RAND()
+									    			LIMIT 1
+									    		)x
+									ON x.question_id = q.question_id
+									INNER JOIN questions.tbl_question_answear qa			ON				qa.question_id = x.question_id
+									WHERE qa.question_id = q.question_id';
+					
+					$result = $conn -> query($sqlQuestion);
+					
+					$row = $result -> fetch_assoc();
+					if($row["question_text"])
+					{
+						echo "<table><tr><th>Question</th></tr>";
+						echo "<tr><td>".$row["question_text"]."</td></tr></table>";
+					}
+					mysql_data_seek ($result);
+					if($result -> num_rows > 0){
+						echo "<table>
+								<tr>
+									<th>A<input type='checkbox'></th>
+									<th>B<input type='checkbox'></th>
+									<th>C<input type='checkbox'></th>
+									<th>D<input type='checkbox'></th>
+								</tr>
+								<tr>"	;
+						while ($row = $result -> fetch_assoc()){
+							echo "<td>".$row["answear_text"]."</td>";
+						}
+						echo "</tr></table>";
+					}
+					else{
+						echo "sth went wrong:(";
+					}
+					
+					/*if($result -> num_rows > 0){
+						echo "<table>
+								<tr>
+									<th>A<input type='checkbox'></th>
+									<th>B<input type='checkbox'></th>
+									<th>C<input type='checkbox'></th>
+									<th>D<input type='checkbox'></th>
+								</tr>
+								<tr>"	;
+						while ($row = $result -> fetch_assoc()){
+							echo "<td>".$row["answear_text"]."</td>";	
+						}
+						echo "</tr></table>";
+					}
+					else{
+						echo "sth went wrong:(";
+					}*/
+					$conn -> close();
+									
+				?>
+				
+			</section>
+		</div>
+	</div>
+
+	<div class="footer">
+	</div>
+</div>
+
+</body>
+</html>
+

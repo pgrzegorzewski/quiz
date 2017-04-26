@@ -1,0 +1,8 @@
+
+function checkAnswear(button)
+{
+	if($(button).attr == '1')
+		alert("You won");
+	else
+		alert("nope");
+}

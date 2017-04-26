@@ -1,0 +1,55 @@
+var success_alerts = ["Yeah, You are right;)", "Great, You earn a point", "Wow! Amazing", "Point for You;)"];
+var failure_alerts = ["Maybe next time will be better", "Nope, not this time:(", "Unofrtunately not;/", "That s not Your day;/"];
+
+
+
+function checkAnswear(button)
+{
+	/*var text = $("#answear");
+	if($(button).attr("id") == '1'){
+		alert('test' + text.val())	
+		text.val(text.val() + 'Of course;) You are right.');
+	}
+	else
+		text.val(text.val() +  'Wrong! Maybe next time');
+*/
+	if(button.id == 1)
+	{
+		document.getElementById("answear").innerText = drawAnswearAlert(1);
+		changeClassButton(button, 1)
+	}
+	else
+	{
+		document.getElementById("answear").innerText= drawAnswearAlert(0);
+		changeClassButton(button, 0)
+	}
+}
+
+function drawAnswearAlert(answearType)
+{
+	if(answearType == 1)
+		return success_alerts[Math.floor(Math.random() * success_alerts.length)];
+	else
+		return failure_alerts[Math.floor(Math.random() * failure_alerts.length)];
+		
+}
+
+function changeClassButton(button, id)
+{
+	if(id == 1)
+	{
+		button.classList.remove('btn-info');
+		button.classList.add('btn-success');
+	}
+	else
+	{
+		button.classList.remove('btn-info');
+		button.classList.add('btn-danger');
+	}
+	
+}
+
+function blockButtons()
+{
+	$(btn).attr("disabled", "disabled");
+}

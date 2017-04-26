@@ -1,0 +1,21 @@
+
+function checkAnswear(button)
+{
+	/*var text = $("#answear");
+	if($(button).attr("id") == '1'){
+		alert('test' + text.val())	
+		text.val(text.val() + 'Of course;) You are right.');
+	}
+	else
+		text.val(text.val() +  'Wrong! Maybe next time');
+*/
+	alert(button.id);
+	if(button.id == 1)
+	{
+		document.getElementById("answear").val = "Yeah, You are right";
+	}
+	else
+	{
+		document.getElementById("answear").val = "Nope, not this time;
+	}
+}

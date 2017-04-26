@@ -1,0 +1,9 @@
+
+function checkAnswear(button)
+{
+	var text = $('#answear');
+	if($(button).attr("id") == '1')
+		text.val = 'Of course;) You are right.';
+	else
+		$('answear').val = 'Wrong! Maybe next time';
+}

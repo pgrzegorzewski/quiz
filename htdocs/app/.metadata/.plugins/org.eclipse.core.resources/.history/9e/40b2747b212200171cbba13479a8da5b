@@ -1,0 +1,10 @@
+<?php
+
+	$host = "localhost";
+	$db_user = "root";
+	$db_passwrod = "";
+	$db_name = "user";
+	
+	$connection = new mysqli()
+
+?>

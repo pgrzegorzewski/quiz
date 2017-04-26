@@ -1,0 +1,24 @@
+var success_alerts = ["Yeah, You are right;)", "Great, You earn a point", "Wow! Amazing", "Point for You;)"];
+var fail_alerts = ["Maybe next time will be better", "Nope, not this time", "Unofrtunately not", "That s not Your day;/"];
+
+
+
+function checkAnswear(button)
+{
+	/*var text = $("#answear");
+	if($(button).attr("id") == '1'){
+		alert('test' + text.val())	
+		text.val(text.val() + 'Of course;) You are right.');
+	}
+	else
+		text.val(text.val() +  'Wrong! Maybe next time');
+*/
+	if(button.id == 1)
+	{
+		document.getElementById("answear").innerText = 'Yeah, You are right;)';
+	}
+	else
+	{
+		document.getElementById("answear").innerText= 'Nope, not this time;(';
+	}
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="StyleSheet" href="../css/index.css" />
+<script type="text/javascript" src="../js/questionnaire.js"></script>
+</head>
+
+<body>
+
+<div class="page">
+	<header class="header">
+		<h1>Magic of Cryptography</h1>
+	</header>
+
+	<div class="row">
+		<div class = "col-m-12">	
+			<nav class= "menu_header">
+				Menu
+				<table>
+					<tr>
+						<td>
+							One
+						</td>
+						<td>
+							Two
+						</td>
+					</tr>
+				</table>
+			</nav>
+		</div>
+
+		<div class="col-m-12">
+			<section class = "section">
+				<span>Question of the day.</span>
+				<!--  <table>
+					<tr>
+						<td colspan = "4">
+							<p><script>printInfo(question1.question)</script></p>
+						</td>	
+					</tr>
+					<tr>
+						<td>
+							<input type = "checkbox">
+							<span><script>printInfo(question1.answear.answear)</script></span>
+						</td>
+						<td>
+							<input type = "checkbox">
+							<span><script>printInfo(question1.answear2.answear)</script></span>
+						</td>
+						<td>
+							<input type = "checkbox">
+							<span><script>printInfo(question1.answear3.answear)</script></span>
+						</td>
+						<td>
+							<input type = "checkbox">
+							<span><script>printInfo(question1.answear4.answear)</script></span>
+						</td>
+					</tr>
+				</table>
+				-->
+				<?php
+					$servername = "localhost";
+					$username = "pawelg";
+					$password = "aaa";
+					$dbname = "questions";
+					
+					$conn = mysqli_connect($servername, $username, $password, $dbname);
+					if($conn -> connect_error){
+						die("Connection failed".$conn -> connect_error);	
+					}
+					$sqlMaxQuestionIndex = "SELECT MAX(question_id) FROM questions.tbl_question";
+					$sqlRandQuestionIndex = "SELECT FLOOR(1 + (RAND() * $sqlMaxQuestionIndex - 1))";
+					$sqlQuestion = "SELECT question_text FROM questions.tbl_question
+							WHERE
+							question_id = $sqlRandQuestionIndex";
+					$sqlAnswears = "SELECT answear_text FROM questions.tbl_question_answear
+									WHERE
+									question_id = $sqlRandQuestionIndex ";
+					
+					$result = $conn -> query($sqlQuestion);
+					
+					if($result -> num_rows > 0){
+						echo "<table><tr><th>Question></th></tr>" ;
+						echo "<tr><td>".$row["question_text"]."</td></tr></table>";
+					}
+					else{
+						echo "sth went wrong:(";
+					}
+					
+					if($result -> num_rows > 0){
+						while ($row = $resultAnswear -> fetch_assoc()){
+							echo "<table><tr><th>Question</th></tr>";
+							echo "<tr><td>".$row["question_text"]."</td></tr></table>";
+						}
+					}
+					$resultAnswear = $conn -> query($sqlAnswears);
+					if($resultAnswear -> num_rows > 0){
+						echo "<table><tr><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr>"	;
+						while ($row = $resultAnswear -> fetch_assoc()){
+							echo "<td>".$row["answear_text"]."</td>";	
+						}
+						echo "</tr></table>";
+					}
+					else{
+						echo "sth went wrong:(";
+					}
+					$conn -> close();
+									
+				?>
+				
+			</section>
+		</div>
+	</div>
+
+	<div class="footer">
+	</div>
+</div>
+
+</body>
+</html>
+

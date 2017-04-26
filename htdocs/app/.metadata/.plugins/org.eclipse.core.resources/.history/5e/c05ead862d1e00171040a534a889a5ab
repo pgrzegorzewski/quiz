@@ -1,0 +1,92 @@
+<?php
+	session_start();
+
+	if(isset($_POST['email']))
+	{
+		//successful registration
+		$register_success = true;
+		
+		//check nickname
+		$nick = $_POST['nick'];
+		if(strlen($nick) < 3 || strlen($nick) > 20)
+		{
+			$register_success = false;
+			$_SESSION['e_nick'] = "Nick length must be between 3 and 20 characters";
+		}
+		
+		if(!ctype_alnum($nick))
+		{
+			$register_success = false;
+			$_SESSION['e_nick'] = "Nick must contain only alphanumerical characters";;
+		}
+		
+		//email check
+		$email = $_POST['email'];
+		$emailSafe = filter_var($email, FILTER_SANITIZE_EMAIL);
+		
+		if(filter_var($emailSafe, FILTER_VALIDATE_EMAIL) || ($emailSafe != $email))
+		{
+			$register_success = false;
+			$_SESSION['e_email'] = "Wrong email";
+			
+		}
+		
+		if($register_success == true)
+		{
+			echo "account created";
+			//insert
+			exit();
+		}
+	}
+?>
+
+<!DOCTYPE HTML>
+<html lang="pl-PL">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content ="IE=edge,chrome=1" />
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	
+	<link rel="StyleSheet" href="../css/register.css" />
+
+	
+	<title>Queezy register</title>
+</head>
+
+<body>
+	
+	<form method = "post">
+		Nickname:<br /> <input type = "text" name = "nick" /><br />
+		
+		<?php 
+			if(isset($_SESSION['e_nick'])){
+				echo '<div class = "error">'.$_SESSION['e_nick'].'</div>';
+				unset($_SESSION['e_nick']);
+			}
+		?>
+		
+		Email:<br /><input type = "text" name = "email" /><br />
+		
+		<?php 
+			if(isset($_SESSION['e_nick'])){
+				echo '<div class = "error">'.$_SESSION['e_email'].'</div>';
+				unset($_SESSION['e_email']);
+			}
+		?>
+		
+		Password:<br /><input type = "password" name = "password" /><br />
+		
+		Repeat password:<br /><input type = "password" name = "password2" /><br />
+		<label>
+			<input type = "checkbox" name="terms"/>Terms and agreements
+		</label>
+		
+		<div class="g-recaptcha" data-sitekey="6Lf9YhwUAAAAAD9ikfHftOu5GXoDOQWbwE_HM4ML"></div>
+		
+		<br /><input type = "submit" value = "Register">
+	</form>
+	
+	
+</body>
+
+</html>
