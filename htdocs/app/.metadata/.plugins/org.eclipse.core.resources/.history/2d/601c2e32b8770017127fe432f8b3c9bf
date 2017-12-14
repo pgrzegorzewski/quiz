@@ -1,0 +1,12 @@
+<?php
+
+	$servername = "postgresql";
+	$username = "pawel";
+	$password = "";
+	//$username = "pawelh";
+	//$password = "aaa";
+	$dbname = "sostgres";
+	
+	$conn;
+
+?>

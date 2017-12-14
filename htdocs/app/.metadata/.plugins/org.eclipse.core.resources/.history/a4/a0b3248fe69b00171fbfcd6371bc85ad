@@ -1,0 +1,29 @@
+.testGeneralInformation
+{
+	color:#28546C;
+	background-color:#AFC2D1;
+	font-size:19px;
+	width:400px;
+	text-align:center;	
+}
+
+input[type="radio"]
+{
+	border-radius: 15px;
+	width:15px;
+	height:15px;
+}
+
+.nextQuestionAdd
+{
+	width:150px;
+	height:30px;
+	background-color:#AFC2D1;
+	color:#28546C;
+}
+
+.questionTitle
+{
+	font-weight:bold;
+	
+}

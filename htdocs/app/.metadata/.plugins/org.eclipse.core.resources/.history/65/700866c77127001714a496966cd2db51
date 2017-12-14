@@ -1,8 +1,0 @@
-
-function checkAnswear(button)
-{
-	if($(button).attr("id") == '1')
-		document.getElementById("answear").value = 'Of course;) You are right.';
-	else
-		document.getElementById("answear").value = 'Wrong! Maybe next time';
-}

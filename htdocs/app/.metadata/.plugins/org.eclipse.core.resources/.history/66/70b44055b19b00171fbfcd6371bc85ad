@@ -1,0 +1,35 @@
+function addNewQuestion(button)
+{
+	button.hidden = true;
+	var id = Number(button.id) + 1;
+		
+	var questionTemplate = $("#questionTemplate").html();
+	
+	$("#question_container").append(questionTemplate.replace(/{{id}}/g, id));
+}
+
+function addAnswears(select)
+{
+	select.disabled = true;
+	
+	var id = select.id.slice(-1);
+	console.log(id);
+	
+	var answearContainer = '#question_answears_container_' + id;
+	console.log(answearContainer);
+	
+	var questionAnswearTemplate = $("#questionAnswearsTemplate").html();
+	questionAnswearTemplate.hidden = true;
+	$(answearContainer).append(questionAnswearTemplate.replace(/{{id}}/g, id));
+	
+	var activeAnswears = select.options[select.selectedIndex].value;
+}
+
+function showAnswears(activeAnswears, id)
+{
+	var answears = document.getElementsByClassName("questionAnswear" + id);
+	for (i = 0; i < answears.length; i++) {
+	    answears[i].hidden = false;
+	}
+}
+

@@ -10,22 +10,32 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link rel="StyleSheet" href="../css/index.css" />
 	<link rel="StyleSheet" href="../css/question.css" />
+	<link rel="StyleSheet" href="../css/side_menu_leaderboard.css" />
 	<script type="text/javascript" src="../js/questionnaire.js"></script>
 	<script type="text/javascript" src="../js/question.js"></script>
-
+	<script type="text/javascript" src="../js/side_menu_leaderboard.js"></script>
 </head>
 
 <body>
 
 <div class="container-fluid">
+	<div class= "sidemenu_2">
+	
+	</div>
+	<div class= "sidemenu">
+		<p style="cursor:pointer"><img src = "../resources/img/trophy.png" height = "50px" onmouseover="openLeaderboard()"/></p> <!-- &#9776; -->
+	</div>
+	<div id = 'leaderboard' class = 'leaderboard' onmouseleave = "closeLeaderboard()" >
+		<a href = "javascript:void(0)" class = "closebtn" onclick = "closeLeaderboard()">&times;</a>
+		test 1000pts;
+	</div>
 	<header class ="header">
 		<h1 id="title"><a href ="index.php"><b>Q</b>u¿zzy</a></h1>
 	</header>
-
 		<div class="nav">
 			<ol>
 				<li>
-					<a href ='#'>Quizes</a>
+					<a href ='quiz.php'>Quizes</a>
 				</li>
 				<li>
 					<a href ='#'>Tests</a>
@@ -33,18 +43,17 @@
 						<li><a href="#">Personality</a></li>
 						<li><a href="#">Cultural</a></li>
 						<li><a href="#">Science</a></li>
-						<li><a href="#">Entertaining</a></li>
+						<li><a href="entertaining_test.php">Entertaining</a></li>
 					</ul>
 				</li>
 				<li>
-					<a href ='#'>Add own test</a>
+					<a href ='add_test.php'>Add own test</a>
 				</li>
 				<li>
 					<a href ='#'>About author</a>
 				</li>
 			</ol>
 		</div>
-
 		<section class = "section">
 			<div id ="welcome_div">
 				<h4>Welcome to Qu¿zzy!</h4> 
@@ -57,7 +66,9 @@
 					<?php
 					
 					session_start();
+					
 					$_SESSION["used_question_ids"][] =  0;
+					
 					function checkAnswear($button, $id)
 					{
 						$check = $button.attr("id");
@@ -85,95 +96,33 @@
 					
 					};
 					
-					
-						$servername = "localhost";
-						$username = "pawelg";
-						$password = "aaa";
-						$dbname = "questions";
-						
-						$conn;
-						$conn = mysqli_connect($servername, $username, $password, $dbname);
-						if($conn -> connect_error){
-							die("Connection failed".$conn -> connect_error);	
-						}
-					
-					function drawRandomQuestion($conn)
-					{
-						$sqlQuestion = "SELECT 
-					
-  											q.question_id,
-  											q.question_text, 
-											qa.is_true,
-  											qa.answear_text, 
-  											qa.question_answear_order, 
-  											qa.question_answear_label 
-  										FROM 
-  											questions.tbl_question q
-										INNER JOIN (
-								
-														SELECT COALESCE(t.question_id, 1) AS question_id FROM questions.tbl_question t
-														LEFT JOIN	
-														(
-										    				SELECT question_id FROM questions.tbl_question
-															WHERE question_id NOT IN (SELECT " .implode(' UNION SELECT ', $_SESSION["used_question_ids"]). ") 
-														)xx
-														ON xx.question_id = t.question_id
-										    			
-										    			LIMIT 1
-										    		)x
-										ON x.question_id = q.question_id
-										INNER JOIN questions.tbl_question_answear qa			ON				qa.question_id = x.question_id
-										WHERE qa.question_id = q.question_id
-										";
-						
-						$result = $conn -> query($sqlQuestion);
-						
-						$row = $result -> fetch_assoc();
-						if($row["question_text"])
-						{
-							//array_push($_SESSION["used_question_ids"], $row["question_id"]);
-							$_SESSION["used_question_ids"][] =  $row["question_id"];
-							echo "<table class =\"table\" id =\"question\" align = center >
-										<tr>
-											<th>Question</th>
-										</tr>";
-							echo "<tr>
-									<td>".$row["question_text"]."</td>
-								  </tr>
-								  </table>";
-						}
-						
-						$result->data_seek(0);
-						if($result -> num_rows > 0){
-							echo "<table id = \"question\" align = center >
-									<tr>";
-							while ($row = $result -> fetch_assoc()){
-								echo "<th><button type=\"button\" class=\"btn btn-info\" id =\" ".$row["is_true"]. "\"onclick =\"checkAnswear(this)\" >".$row["question_answear_label"]."</button></th>";
-							}
-							echo"</tr><tr>"	;
-							$result->data_seek(0);
-							while ($row = $result -> fetch_assoc()){
-								echo "<td>".$row["answear_text"]."</td>";
-							}
-							echo "</tr></table>";
-						}
-						else{
-							echo "sth went wrong:(";
-						}
-						
-						$conn -> close();
-					};	
-					drawRandomQuestion($conn);	
+					require 'connect.php';
+					//$conn = mysqli_connect($servername, $username, $password, $dbname);
+					$conn_string = "host=localhost port=5432 dbname=postgres user=pawel password=aaa";
+					$conn= pg_connect($conn_string);
+					if(!$conn){
+						$error = error_get_last();
+						echo "Connection failed. Error was: ". $error['message']. "\n";
+					}
+					require '../php/class_question.php';	
+					$question = new Question();
+					$question -> drawRandomQuestion($conn);
+					//drawRandomQuestion($conn);
 					?>
 				</div>
 				<div class="col-sm-6">
 					<div class = "row">
-						<div class = "col-sm-16 answear_header"></div>
+						<div class = "col-sm-16 answear_header" id ="answearHeader"></div>
 					</div>
 					<div class = "row">
 						<div class = "col-sm-1 "></div>
 						<div class = "col-sm-2 answear_img"><p id = "answear_img"></p></div>
 						<div class ="col-sm-4 answear"><p id = "answear"></p></div>
+					</div>
+					<div class = "row">
+						<div class = "col-sm-1 "></div>
+						<div class = "col-sm-2 answear_img"><p><img id="refresh_img" height=50px; width=50px; src = "../resources/img/refresh.png" hidden = true; onclick = "drawNextQuestion()" ></p></div>
+						<div class ="col-sm-4 answear"><p id = "refresh"></div>
 					</div>
 					
 									

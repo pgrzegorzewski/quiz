@@ -1,0 +1,13 @@
+function addNewQuestion(button)
+{
+	button.hidden = true;
+	var id = button.id + 1;
+	
+	var template = $("#videoTemplate").html();
+	$(".videos").append(template.replace("{{count}}",count).
+	                             replace("{{videoURL}}",vList[i].player).
+	                             replace("{{videoTitle}}",videoTitle));
+	
+	var questionTemplate = $("#questionTemplate")
+	$("#question_container").append(questionTemplate.replace("{{id}}"),id);
+}

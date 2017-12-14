@@ -1,0 +1,20 @@
+function addNewQuestion(button)
+{
+	button.hidden = true;
+	button.id = 2;
+	
+	$("#question_container").append("<form class = 'newQuestion' id = '1'>
+					1. Question:<br>
+					Add your question*:
+					<input class = 'testGeneralInformation' type = 'text' name = 'question'><br>
+					Choose amount of answears*:
+					<select name='answears_amount'>
+						  <option value='1'>1</option>
+						  <option value='2'>2</option>
+						  <option value='3'>3</option>
+						  <option value='4'>4</option>
+					</select>
+					<div class = 'answearsAdd'></div>
+					<input class = 'nextQuestionAdd' id =  type = 'button' value = 'Add new question' onclick = 'addNewQuestion(this, )'>
+					</form>");
+}

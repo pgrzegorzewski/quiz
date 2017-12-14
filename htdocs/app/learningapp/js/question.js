@@ -31,6 +31,21 @@ function checkAnswear(button)
 		document.getElementById("answear").appendChild(image);*/
 	changeClassButton(button, button.id);
 	
+	createButtonDrawAgain();
+	
+}
+
+
+function createButtonDrawAgain()
+{
+	document.getElementById("refresh").innerText ='Draw next question?';
+	
+	document.getElementById("refresh_img").hidden = false;
+}
+
+function drawNextQuestion()
+{
+	location.reload();
 }
 
 function drawAnswearAlert(answearType)

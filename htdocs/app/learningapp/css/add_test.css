@@ -1,0 +1,53 @@
+.testGeneralInformation
+{
+	color:#28546C;
+	background-color:#AFC2D1;
+	font-size:19px;
+	width:400px;
+	text-align:center;	
+}
+
+input[type="radio"]
+{
+	border-radius: 15px;
+	width:15px;
+	height:15px;
+}
+
+select
+{
+	background-color:#AFC2D1;
+	color:#28546C;
+}
+
+
+.nextQuestionAdd
+{
+	width:150px;
+	height:30px;
+	background-color:#AFC2D1;
+	color:#28546C;
+}
+
+.questionTitle
+{
+	font-weight:bold;	
+}
+
+.question_answear_input
+{
+	color:#28546C;
+	background-color:#AFC2D1;
+	font-size:19px;
+	width:187px;
+	text-align:center;		
+}
+
+#testSubmit
+{
+	width:150px;
+	height:30px;
+	color:#28546C;
+	background-color:#6ac65b;
+	
+}

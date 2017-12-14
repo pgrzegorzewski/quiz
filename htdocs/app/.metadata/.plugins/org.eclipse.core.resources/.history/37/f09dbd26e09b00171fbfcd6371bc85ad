@@ -1,0 +1,29 @@
+.testGeneralInformation
+{
+	color:#28546C;
+	background-color:#AFC2D1;
+	font-size:19px;
+	width:400px;
+	text-align:center;	
+}
+
+input[type="radio"] 
+{
+	/*border:2px solid #AFC2D1;
+	background-color: #AFC2D1;
+	border-radius: 15px;
+	width:15px;
+	height:15px;
+	content: '';*/
+	 width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #ffa500;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+}

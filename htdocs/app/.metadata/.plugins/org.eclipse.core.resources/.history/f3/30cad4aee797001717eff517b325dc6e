@@ -1,0 +1,20 @@
+function addNewQuestion(button)
+{
+	button.hidden = true;
+	var id = Number(button.id) + 1;
+		
+	var questionTemplate = $("#questionTemplate").html();
+	
+	$("#question_container").append(questionTemplate.replace(/{{id}}/g, id));
+}
+
+function addAnswears(select)
+{
+	var id = select.id.slice(-1);
+
+	var questionAnswearTemplate = $("#questionAnswearTemplate").html();
+	
+	$("#question_answears_container").append(questionAnswearTemplate.replace(/{{id}}/g, id));
+}
+
+

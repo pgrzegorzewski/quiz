@@ -1,0 +1,12 @@
+<?php
+
+	$servername = "127.0.0.1::5432";
+	$username = "postgres";
+	$password = "";
+	//$username = "pawelg";
+	//$password = "aaa";
+	$dbname = "postgres";
+	
+	$conn;
+
+?>

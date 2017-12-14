@@ -1,0 +1,27 @@
+#quizButton
+{
+	padding:20px;
+	margin-left:20px;
+	
+}
+
+
+#tiles
+{
+	padding:10px;
+	z-index:50;
+	position:relative;
+}
+
+#tile
+{
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+	border-radius:50%;
+}
+
+button .clicked
+{
+	background-color:#6ac65b;
+}

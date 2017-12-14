@@ -1,0 +1,15 @@
+.testGeneralInformation
+{
+	color:#28546C;
+	background-color:#AFC2D1;
+	font-size:19px;
+	width:400px;
+	text-align:center;	
+}
+
+input[type="radio"] 
+{
+	border:3px solid #AAAAAA;
+	size:12px;
+	
+}

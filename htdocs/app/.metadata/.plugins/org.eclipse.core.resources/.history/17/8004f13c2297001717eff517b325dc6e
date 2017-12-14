@@ -1,0 +1,5 @@
+function addNewQuestion(button)
+{
+	button.hidden = true;
+	//button.id = 2;
+}

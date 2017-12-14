@@ -4,12 +4,19 @@
 	
 }
 
+
 #question button{
 	min-width: 50px;
-	
+	text-align: center;
 }
 
-#question td, th{
+#question th{
+	min-width: 50px;
+	text-align: center;
+}
+
+td, th > #question{
 	min-width: 90px;
+	padding:10px;
 	text-align: center;
 }

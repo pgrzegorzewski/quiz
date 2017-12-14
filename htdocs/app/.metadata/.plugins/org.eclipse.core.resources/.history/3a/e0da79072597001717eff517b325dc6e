@@ -1,0 +1,13 @@
+function addNewQuestion(button)
+{
+	button.hidden = true;
+	var id = number(button.id) + 1;
+	
+	console.log(id);
+	
+	var questionTemplate = $("#questionTemplate").html();
+	
+	console.log(questionTemplate);
+	
+	$("#question_container").append(questionTemplate.replace("{{id}}",id));
+}

@@ -1,0 +1,16 @@
+.testGeneralInformation
+{
+	color:#28546C;
+	background-color:#AFC2D1;
+	font-size:19px;
+	width:400px;
+	text-align:center;	
+}
+
+input[type="radio"]:checked:after
+{
+	content:url('/images/new-home-page/Checkbox.png');
+    height:3vh;
+    width:3vh;
+	
+}
